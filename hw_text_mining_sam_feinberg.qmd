@@ -36,7 +36,7 @@ Use the **`tidytext`** package and three different **sentiment lexicons** (`nrc`
     -   Create `linenumber` and `chapter` columns.
 
 ```{r}
-#| label: Step 1
+#| label: Part 1
 #| warning: false
 
 library(tidyverse)
@@ -67,7 +67,19 @@ head(austen_books_chapt_and_line, n = 20)
 
     -   Use `unnest_tokens()` to tokenize text into individual words.
 
-2.  **Sentiment Analysis**
+```{r}
+#| label: Part 2
+
+austen_tokenized <- austen_books_chapt_and_line |>
+  unnest_tokens(word, text) 
+
+head(austen_tokenized, n = 10)
+
+# In this part, I used unnest_tokens() to tokenize the text from austen_books_chapt_and_line by word, and I saved it as a tibble.
+
+```
+
+1.  **Sentiment Analysis**
 
     -   Filter joy/positive words from **each** of the three sentiment lexicons:
 
@@ -81,7 +93,7 @@ head(austen_books_chapt_and_line, n = 20)
         -   Filter for frequently occurring words (`n > 50`).
         -   Visualize using a **bar chart** (`ggplot2`) and a **word cloud** (`wordcloud`).
 
-3.  **Push to GitHub**
+2.  **Push to GitHub**
 
     -   Push your complete rendred qmd (`.html` file) to a **GitHub repository**.
 

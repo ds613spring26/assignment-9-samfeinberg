@@ -2,6 +2,7 @@
 title: "Homework Assignment: Sentiment Analysis of Emma"
 format: html
 editor: visual
+author: Sam Feinberg
 ---
 
 ```{r setup, include=FALSE}

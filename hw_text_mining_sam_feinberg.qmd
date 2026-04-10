@@ -45,6 +45,7 @@ library(janeaustenr)
 library(dplyr)
 library(textdata)
 library(stringr)
+library(wordcloud)
 
 austen_books() |>
   distinct(book)
@@ -137,6 +138,10 @@ ggplot(positive_words_emma, aes(x = word, y = n)) +
     x = "Word",
     y = "Occurences")
 
+positive_words_emma |>
+  with(wordcloud(word, n))
+
+# In this part, I first used inner_join() to combine the positve words from 3a with the words from Emma. I used filter() to only keep positive words in Emma that occurred 50 or more times. I then used ggplot2 to create a bar chart of how much each positive word was used. Lastly, I used wordcloud() to create a word cloud showing the frequency of the positive words in Emma (that appeared at least 50 times).
 
 ```
 

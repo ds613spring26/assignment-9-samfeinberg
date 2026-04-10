@@ -122,6 +122,20 @@ head(positive_words, n = 10)
 ```{r}
 #| label: Part 3b
 
+positive_words_emma <- austen_tokenized |>
+  filter(book == "Emma") |>
+  inner_join(positive_words, by = "word", relationship = "many-to-many") |>
+  count(word, sort = TRUE) |>
+  filter(n > 50)
+
+head(positive_words_emma)
+
+ggplot(positive_words_emma, aes(x = word, y = n)) +
+  geom_col(fill = "navy") +
+  labs(
+    title = "Common Positve Words in Emma",
+    x = "Word",
+    y = "Occurences")
 
 
 ```

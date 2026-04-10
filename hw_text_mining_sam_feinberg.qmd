@@ -87,13 +87,46 @@ head(austen_tokenized, n = 10)
         -   `afinn` (positive scores ≥ 1)
         -   `bing` (positive)
 
+```{r}
+#| label: Part 3a
+
+nrc_joy <- get_sentiments("nrc") |>
+  filter(sentiment == "joy")
+
+affin_positive <- get_sentiments("afinn") |>
+  filter(value > 0)
+
+positive_words <- get_sentiments("bing") |>
+  filter(sentiment == "positive") |>
+  left_join(nrc_joy, by = "word") |>
+  left_join(affin_positive, by = "word") |>
+  rename(
+    pos_or_neg = sentiment.x,
+    sentiment = sentiment.y
+  )
+
+head(positive_words, n = 10)
+
+# Here, I first made 2 seperate dataframes, by filtering words with the sentiment "joy" from nrc and words with positve values from afinn. Then, I used lef_join() to make a dataframe with these words, and the positive sentiment words from bing. I also renamed the columns for clarity.
+
+```
+
+1.  
+
     -   Join each with *Emma*'s text and:
 
         -   Count word frequency.
         -   Filter for frequently occurring words (`n > 50`).
         -   Visualize using a **bar chart** (`ggplot2`) and a **word cloud** (`wordcloud`).
 
-2.  **Push to GitHub**
+```{r}
+#| label: Part 3b
+
+
+
+```
+
+1.  **Push to GitHub**
 
     -   Push your complete rendred qmd (`.html` file) to a **GitHub repository**.
 
